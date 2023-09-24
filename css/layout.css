@@ -61,10 +61,10 @@ img{
     transform: rotateY(180deg);
 }
 
-.caixa:hover .verso {
+.caixa:active .verso {
     transform: rotateY(0deg);
 }
 
-.caixa:hover .frente {
+.caixa:active .frente {
     transform: rotateY(-180deg);
 }
