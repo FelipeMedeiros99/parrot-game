@@ -15,10 +15,12 @@ while (numeroDeCartas < 4 | numeroDeCartas >14 | numeroDeCartas%2 !== 0){
 
 
 function gerarCartas(qtCartas){
-    for(let i = 0; i < qtCartas/2; i++){
+    for(let i = 0; i < qtCartas; i++){
         htmlCartas.innerHTML += 
-        `<img src="${enderecoCartas[i]}">
-         <img src="${enderecoCartas[i]}">`
+    `<div class="carta">
+         <img class="parte-oculta" src="${enderecoCartas[i]} onclick="virarCarta()">
+         <img src="icone/front.png" onclick="virarCarta()">
+    </div>`
     }
 }
 
