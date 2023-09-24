@@ -18,19 +18,6 @@ section{
 
 }
 
-.carta{
-    width: 117px;
-    height: 146px;
-    background-color: #99CEA8;
-    border: solid #99CEA8;
-    position: relative;
-    margin-bottom: 34px;
-    margin-right: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 main h1 {
     color: #75B79E;
     font-weight: 700;
@@ -46,7 +33,38 @@ img{
 
 }
 
-.parte-oculta{
-    display: none;
+
+.caixa{
+    width: 117px;
+    height: 146px;
+    position: relative;
+    margin-bottom: 34px;
+    margin-right: 34px;
 }
 
+
+.carta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    transition: all 0.5s;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    background-color: #99CEA8; 
+    width: 100%;
+    height: 100%;
+}
+
+
+.verso {
+    transform: rotateY(180deg);
+}
+
+.caixa:hover .verso {
+    transform: rotateY(0deg);
+}
+
+.caixa:hover .frente {
+    transform: rotateY(-180deg);
+}
