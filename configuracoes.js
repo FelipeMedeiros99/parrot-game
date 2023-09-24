@@ -15,13 +15,56 @@ while (numeroDeCartas < 4 | numeroDeCartas >14 | numeroDeCartas%2 !== 0){
 
 
 function gerarCartas(qtCartas){
+    // criando lista com cartas duplicadas
+    let paresCartas = []
+    for (let i = 0; i < qtCartas/2; i++){
+        paresCartas.push(enderecoCartas[i])
+        paresCartas.push(enderecoCartas[i])
+    }
+
+    // embaralhando cartas
+    paresCartas = embaralharElementos(paresCartas)
+    
+    console.log(paresCartas)
+    
     for(let i = 0; i < qtCartas; i++){
         htmlCartas.innerHTML += 
-    `<div class="carta">
-         <img class="parte-oculta" src="${enderecoCartas[i]} onclick="virarCarta()">
-         <img src="icone/front.png" onclick="virarCarta()">
+    `<div class="carta" onclick="virarCarta(this)">
+         <img class="parte-oculta" src="${paresCartas[i]}">
+         <img src="icone/front.png">
     </div>`
     }
 }
 
+function virarCarta(carta){
+    let imagens = carta.querySelectorAll('img')
+    imagens[0].classList.toggle('parte-oculta')
+    imagens[1].classList.toggle("parte-oculta")
+}
+
+
+function embaralharElementos(lista){
+    let elementosEmbaralhados = []
+    let tamanhoLista = lista.length
+
+
+    for (let i = 0; i < tamanhoLista; i++){
+        //selecionando endereço elemento aleatorio da lista
+        let indexDoElementoAleatorio = Math.floor(Math.random()*lista.length)
+        
+        //adicionando elemento escolhido na lista
+        elementosEmbaralhados.push(lista[indexDoElementoAleatorio])
+
+        //removendo elemento escolhido da lista
+        lista.splice(indexDoElementoAleatorio, 1)
+
+
+    }
+
+
+    return elementosEmbaralhados
+}
+
+
+//chamando a função geradora
 gerarCartas(numeroDeCartas)
