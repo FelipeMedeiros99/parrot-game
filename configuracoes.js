@@ -30,24 +30,24 @@ function gerarCartas(qtCartas){
     
     for(let i = 0; i < qtCartas; i++){
         htmlCartas.innerHTML += 
-    `<div class="caixa">
+    `<div class="caixa"  onclick="virarCarta(this)">
         <div class="frente carta">
             <img src="icone/front.png">
         </div>
         
-        <div class="verso carta">
-            <img class="parte-oculta" src="${paresCartas[i]}">
+        <div class="verso carta .virada">
+            <img src="${paresCartas[i]}">
         </div>
 
     </div>`
     }
 }
 
-// function virarCarta(carta){
-//     let imagens = carta.querySelectorAll('img')
-//     imagens[0].classList.toggle('parte-oculta')
-//     imagens[1].classList.toggle("parte-oculta")
-// }
+function virarCarta(carta){
+    let lados = carta.querySelectorAll("div")
+    lados[0].classList.toggle('virada')
+    lados[1].classList.toggle('virada')
+  }
 
 
 function embaralharElementos(lista){
