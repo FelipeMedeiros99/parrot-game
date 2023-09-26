@@ -1,25 +1,27 @@
-let numeroDeCartas = 1 // variável
-let htmlCartas = document.querySelector('section')
+let numeroDeCartas = 1                              // variável
+let htmlCartas = document.querySelector('section')  // html que ficará na página
+let paresCartas = []                                // recebe cartas embaralhadas
+let verificaPar = []                                // verificará se cartas são iguais
+let permitirSelecionar = true                       // controle de toque para o usuário
+
 let enderecoCartas = ['gifs/bobrossparrot.gif', 
                       'gifs/explodyparrot.gif',
                       'gifs/fiestaparrot.gif', 
                       'gifs/metalparrot.gif',
                       'gifs/revertitparrot.gif', 
                       'gifs/tripletsparrot.gif', 
-                      'gifs/unicornparrot.gif']
-let paresCartas = [] // recebe cartas embaralhadas
-let verificaPar = [] // verificará se cartas são iguais
-let permitirSelecionar = true // controle de toque para o usuário
+                      'gifs/unicornparrot.gif']     //endereço das cartas
 
-// o número precisa ser par e entre 4 e 4
-while (numeroDeCartas < 4 | numeroDeCartas >14 | numeroDeCartas%2 !== 0){
-    numeroDeCartas = parseInt(prompt("Insira um número PAR de cartas (entre 4 e 14)"))
+
+// o número de pares entre 2 e 7
+while (numeroDeCartas < 2 | numeroDeCartas >7){
+    numeroDeCartas = parseInt(prompt("Insira a quantidade de pares que deseja jogar (entre 2 e 7"))
 }
 
 
-function gerarCartas(qtCartas){
+function gerarCartas(){
     // criando lista com cartas duplicadas
-    for (let i = 0; i < qtCartas/2; i++){
+    for (let i = 0; i < numeroDeCartas; i++){
         paresCartas.push(enderecoCartas[i])
         paresCartas.push(enderecoCartas[i])
     }
@@ -27,7 +29,7 @@ function gerarCartas(qtCartas){
     // embaralhando cartas
     paresCartas = embaralharElementos(paresCartas)
     
-    for(let i = 0; i < qtCartas; i++){
+    for(let i = 0; i < numeroDeCartas*2; i++){
         htmlCartas.innerHTML += 
     `<div class="caixa"  onclick="virarCarta(this)">
         <div class="frente carta">
@@ -75,6 +77,7 @@ function verificaAcerto(){
     }
 }
 
+
 function desvirarCarta(){
     verificaPar[0][0].classList.toggle('virada')
     verificaPar[0][1].classList.toggle('virada')
@@ -86,9 +89,10 @@ function desvirarCarta(){
 
 
 function embaralharElementos(lista){
+    // recebe uma lista qualquer e devolve essa lista de forma embaralhada
+
     let elementosEmbaralhados = []
     let tamanhoLista = lista.length
-
 
     for (let i = 0; i < tamanhoLista; i++){
         //selecionando endereço elemento aleatorio da lista
@@ -101,33 +105,8 @@ function embaralharElementos(lista){
         lista.splice(indexDoElementoAleatorio, 1)
     }
     
+    // devolvendo a lista embaralhada
     return elementosEmbaralhados
 }
 
-// function verificaAcerto(){
-//     if (clique === 2){
-
-
-//         if (par[0] === par[1]){
-//             alert('acertou')
-//             clique = 0
-//             par.pop()
-//             par.pop()
-//         } 
-
-//         else{
-//             clique = 0
-            
-//             par[0].parentNode.classList.remove('virada')
-//             par[1].parentNode.classList.remove('virada')
-
-//             par.pop()
-//             par.pop()
-
-//         }
-//     }
-// }
-
-
-//chamando a função geradora
-gerarCartas(numeroDeCartas)
+gerarCartas()
