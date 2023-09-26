@@ -119,18 +119,15 @@ function embaralharElementos(lista){
 
 
 function verificaSeTodasEstaoViradas(){
+    // manda um alert quando todas as cartas estiverem viradas, finalizando o jogo
     let viradas = document.querySelectorAll('.frente.virada')
+
     if (viradas.length === paresCartas.length){
         alert(`Você ganhou em ${jogadas} jogadas!`)
     }
-    
-    // for(let i = 0; i < viradas.length; i++){
-    //     console.log(viradas[i])
-    // }   
 
-    
-    // console.log(viradas)
-    // console.log(paresCartas.length)
+    document.querySelector('aside').innerHTML = 
+    `<aside><p>Jogadas: ${jogadas}</p></aside>`
 }
 
 
