@@ -3,6 +3,7 @@ let htmlCartas = document.querySelector('section')  // html que ficará na pági
 let paresCartas = []                                // recebe cartas embaralhadas
 let verificaPar = []                                // verificará se cartas são iguais
 let permitirSelecionar = true                       // controle de toque para o usuário
+let jogadas = 0                                     // qt de jogadas
 
 let enderecoCartas = ['gifs/bobrossparrot.gif', 
                       'gifs/explodyparrot.gif',
@@ -29,6 +30,7 @@ function gerarCartas(){
     // embaralhando cartas
     paresCartas = embaralharElementos(paresCartas)
     
+    // gerando o html com as cartas inseridas
     for(let i = 0; i < numeroDeCartas*2; i++){
         htmlCartas.innerHTML += 
     `<div class="caixa"  onclick="virarCarta(this)">
@@ -44,13 +46,13 @@ function gerarCartas(){
     }
 }
 
+
 function virarCarta(carta){
-    
+    // virar carta ao ser clicada. 
     if (permitirSelecionar){
         let lados = carta.querySelectorAll("div")
-        let frente = lados[0]
         let verso = lados[1]
-
+        
         // condição para virar apenas para um lado
         if (verso.classList.contains('virada')){
             lados[0].classList.toggle('virada') // frente 
@@ -58,27 +60,33 @@ function virarCarta(carta){
             verificaPar.push(lados)
         }
 
+        // verificar se o par está igual
         verificaAcerto()
+        verificaSeTodasEstaoViradas()
     }
 }
 
 
 function verificaAcerto(){
+    // verifica se o código html das cartas estão iguais
     if (verificaPar.length === 2){
         
         if (verificaPar[0][1].innerHTML === verificaPar[1][1].innerHTML){
             verificaPar =[]
+            jogadas ++
         }
+
         else{
            setTimeout(desvirarCarta, 1000);
+           jogadas ++
            permitirSelecionar = false
-
         }
     }
 }
 
 
 function desvirarCarta(){
+    // Desvirar cartas caso estejam erradas
     verificaPar[0][0].classList.toggle('virada')
     verificaPar[0][1].classList.toggle('virada')
     verificaPar[1][0].classList.toggle('virada')
@@ -108,5 +116,22 @@ function embaralharElementos(lista){
     // devolvendo a lista embaralhada
     return elementosEmbaralhados
 }
+
+
+function verificaSeTodasEstaoViradas(){
+    let viradas = document.querySelectorAll('.frente.virada')
+    if (viradas.length === paresCartas.length){
+        alert(`Você ganhou em ${jogadas} jogadas!`)
+    }
+    
+    // for(let i = 0; i < viradas.length; i++){
+    //     console.log(viradas[i])
+    // }   
+
+    
+    // console.log(viradas)
+    // console.log(paresCartas.length)
+}
+
 
 gerarCartas()
