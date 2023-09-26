@@ -40,9 +40,10 @@ img{
     position: relative;
     margin-bottom: 34px;
     margin-right: 34px;
+    background-color: #EEF9BF;
 }
 
-.frente, .verso{
+.carta{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,57 +59,18 @@ img{
 
 .frente{
     transform: rotateY(0deg);
-}
-
-.verso{
-    transform: rotateY(180deg);
+    z-index: 2;
 }
 
 .frente.virada{
     transform: rotateY(180deg);
+}
+
+.verso{
+    transform: rotateY(0deg);
 }
 
 .verso.virada{
-    transform: rotateY(0deg);
-}
-
-/* versão funcionando abaixo */
-
-/* .caixa{
-    width: 117px;
-    height: 146px;
-    position: relative;
-    margin-bottom: 34px;
-    margin-right: 34px;
-}
-
-
-.carta{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    transition: all 0.5s;
-    transform-style: preserve-3d;
-    backface-visibility: hidden; 
-    background-color: #99CEA8; 
-    width: 100%;
-    height: 100%;
- }
-
-
-.frente{
-    transform: rotateY(0deg);
-}
-
-.verso{
     transform: rotateY(180deg);
-}
-
-.verso.virada {
-    transform: rotateY(0);
-}
-
-.frente.virada{
-    transform: rotateY(180deg);
-} */
+    z-index: 2;
+} 
