@@ -1,5 +1,3 @@
-while (true){
-
 let numeroDeCartas = 1                              // variável
 let htmlCartas = document.querySelector('section')  // html que ficará na página
 let paresCartas = []                                // recebe cartas embaralhadas
@@ -153,4 +151,3 @@ function contaSegundos(){
 }
 
 gerarCartas()
-}
