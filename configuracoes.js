@@ -1,3 +1,5 @@
+while (true){
+
 let numeroDeCartas = 1                              // variável
 let htmlCartas = document.querySelector('section')  // html que ficará na página
 let paresCartas = []                                // recebe cartas embaralhadas
@@ -12,6 +14,9 @@ let enderecoCartas = ['gifs/bobrossparrot.gif',
                       'gifs/revertitparrot.gif', 
                       'gifs/tripletsparrot.gif', 
                       'gifs/unicornparrot.gif']     //endereço das cartas
+let tempo = 0       // inicio da contagem do tempo
+let contagem = null // contagem do tempo
+let click = 0
 
 
 // o número de pares entre 2 e 7
@@ -48,7 +53,15 @@ function gerarCartas(){
 
 
 function virarCarta(carta){
-    // virar carta ao ser clicada. 
+    // virar carta ao ser clicada.
+    
+    click += 1
+    
+    if (click === 1){
+        // inicia contagem após o primeiro clique 
+        contagem = setInterval(contaSegundos, 1000)            
+    } 
+
     if (permitirSelecionar){
         let lados = carta.querySelectorAll("div")
         let verso = lados[1]
@@ -123,12 +136,21 @@ function verificaSeTodasEstaoViradas(){
     let viradas = document.querySelectorAll('.frente.virada')
 
     if (viradas.length === paresCartas.length){
-        alert(`Você ganhou em ${jogadas} jogadas!`)
+        clearInterval(contagem)
+        alert(`Você ganhou em ${jogadas} jogadas e ${tempo} segundos!`)
+        
     }
 
     document.querySelector('aside').innerHTML = 
-    `<aside><p>Jogadas: ${jogadas}</p></aside>`
+    `<aside class="jogadas"><p>Jogadas: ${jogadas}</p></aside>`
+
 }
 
+function contaSegundos(){
+    tempo += 1
+    document.querySelector('.relogio').innerHTML = `<aside class="relogio"><p>Tempo: ${tempo}s</p></aside>`
+    
+}
 
 gerarCartas()
+}
