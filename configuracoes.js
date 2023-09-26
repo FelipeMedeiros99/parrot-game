@@ -135,14 +135,26 @@ function verificaSeTodasEstaoViradas(){
 
     if (viradas.length === paresCartas.length){
         clearInterval(contagem)
-        alert(`Você ganhou em ${jogadas} jogadas e ${tempo} segundos!`)
-        
+        setTimeout(finalizaJogo, 500)        
     }
 
     document.querySelector('aside').innerHTML = 
     `<aside class="jogadas"><p>Jogadas: ${jogadas}</p></aside>`
 
 }
+
+function finalizaJogo(){
+    alert(`Você ganhou em ${jogadas} jogadas e ${tempo} segundos!`)
+    let jogarNovamente = prompt('deseja reinicar? s-sim / n-não')[0]
+    if(jogarNovamente === 'n'){
+        null
+    }
+    else{
+        location.reload(true)
+    }
+
+}
+
 
 function contaSegundos(){
     tempo += 1
